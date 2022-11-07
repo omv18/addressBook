@@ -11,7 +11,8 @@ namespace AddressBook
         static void Main(string[] args)
         {
             AddressBook addressBook = new AddressBook();
-            addressBook.craeteContact();
+            //addressBook.createContact();
+            addressBook.edit("ab");
         }
     }
 }
