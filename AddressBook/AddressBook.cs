@@ -3,34 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AddressBook
 {
     internal class AddressBook
     {
-        Contact contact = new Contact();
         List<Contact> addressBook = new List<Contact>();
-        public void print()
+        public void DisplayList()
         {
-            Console.WriteLine("Contact Derails : " + "\n" + "First Name : " + contact.FirstName + "\n" + "Last Name : " + contact.LastName
-                                + "\n" + "Address is : " + contact.Address + "\n" + "City is : " + contact.City + "\n" + "State is : " + contact.State
-                                + "\n" + "Zip is : " + contact.Zip + "\n" + "Phone Number is :" + contact.PhoneNumber + "\n" + "Email is : " + contact.Email);
+            int count = 0;
+            foreach (var contact in addressBook)
+            {
+                Console.WriteLine("Contact Derails : "+count+ "\n" + "First Name : " + contact.FirstName + "\n" + "Last Name : " + contact.LastName
+                    + "\n" + "Address is : " + contact.Address + "\n" + "City is : " + contact.City + "\n" + "State is : " + contact.State
+                    + "\n" + "Zip is : " + contact.Zip + "\n" + "Phone Number is :" + contact.PhoneNumber + "\n" + "Email is : " + contact.Email);
+                count++;
+            }
         }
-        public void createContact()
+        public void CreateContact()
         {
+            Contact contact = new Contact();
+            Console.Write("Enter  FirstName: ");
             contact.FirstName = Console.ReadLine();
+            Console.Write("Enter  LastName: ");
             contact.LastName = Console.ReadLine();
+            Console.Write("Enter  Address: ");
             contact.Address = Console.ReadLine();
+            Console.Write("Enter  City: ");
             contact.City = Console.ReadLine();
+            Console.Write("Enter  State: ");
             contact.State = Console.ReadLine();
+            Console.Write("Enter  Zip: ");
             contact.Zip = Convert.ToInt64(Console.ReadLine());
+            Console.Write("Enter  PhoneNumber: ");
             contact.PhoneNumber = Console.ReadLine();
+            Console.Write("Enter  Email: ");
             contact.Email = Console.ReadLine();
             addressBook.Add(contact);
         }
-        public void edit(string name)
+        public void Edit(string name)
         {
-            createContact();
             foreach (var contact in addressBook)
             {
                 if ((contact.FirstName.Equals(name)) || (contact.LastName.Equals(name)))
@@ -46,25 +59,46 @@ namespace AddressBook
                             contact.LastName = Console.ReadLine();
                             break;
                         case 3:
-                            contact.City = Console.ReadLine();
+                            contact.Address = Console.ReadLine();
                             break;
                         case 4:
-                            contact.State = Console.ReadLine();
+                            contact.City = Console.ReadLine();
                             break;
                         case 5:
-                            contact.Zip = Convert.ToInt64(Console.ReadLine());
+                            contact.State = Console.ReadLine();
                             break;
                         case 6:
+                            contact.Zip = Convert.ToInt64(Console.ReadLine());
                             break;
                         case 7:
-                            contact.PhoneNumber = Console.ReadLine();
                             break;
                         case 8:
+                            contact.PhoneNumber = Console.ReadLine();
+                            break;
+                        case 9:
                             contact.Email = Console.ReadLine();
                             break;
                     }
-                    print();
+                    break;
                 }
+            }
+        }
+
+        public void DeleteContacts(string name)
+        {
+            try
+            {
+                foreach (var contact in addressBook.ToList())
+                {
+                    if ((contact.FirstName.Equals(name)) || (contact.LastName.Equals(name)))
+                    {
+                        addressBook.Remove(contact);
+                    }   
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }
