@@ -102,7 +102,7 @@ namespace AddressBook
                 Console.WriteLine(e.Message);
             }
         }
-
+        //UC5
         public void CreateDictionarContact()
         {
             Console.Write("Enter the key :");
@@ -123,7 +123,5 @@ namespace AddressBook
                 }
             }
         }
-
-
     }
 }
