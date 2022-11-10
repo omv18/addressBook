@@ -10,7 +10,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("1. Create  2. Edit  3.Delete  4.Display  5.Exit");
+                Console.WriteLine("1. Create  2. Edit  3.Delete  4.Display 5.Dict-Create 6.Dispaly_dict 7.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -29,6 +29,12 @@ namespace AddressBook
                         break;
                     case 4:
                         addressBook.DisplayList();
+                        break;
+                    case 5:
+                        addressBook.CreateDictionarContact();
+                        break;
+                    case 6:
+                        addressBook.DisplayDict();
                         break;
                     default:
                         flag = false;

@@ -10,6 +10,7 @@ namespace AddressBook
     internal class AddressBook
     {
         List<Contact> addressBook = new List<Contact>();
+        Dictionary<string, List<Contact>> addressDict = new Dictionary<string, List<Contact>>();
         public void DisplayList()
         {
             int count = 0;
@@ -101,5 +102,28 @@ namespace AddressBook
                 Console.WriteLine(e.Message);
             }
         }
+
+        public void CreateDictionarContact()
+        {
+            Console.Write("Enter the key :");
+            string key = Console.ReadLine();
+            addressDict.Add(key, addressBook);
+            addressBook = new List<Contact>();
+        }
+         public void DisplayDict()
+        {
+            foreach(var data in addressDict)
+            {
+                Console.WriteLine(data.Key);
+                foreach(var contact in data.Value)
+                {
+                    Console.WriteLine("Contact Derails : \n" + "First Name : " + contact.FirstName + "\n" + "Last Name : " + contact.LastName
+                                    + "\n" + "Address is : " + contact.Address + "\n" + "City is : " + contact.City + "\n" + "State is : " + contact.State
+                                    + "\n" + "Zip is : " + contact.Zip + "\n" + "Phone Number is :" + contact.PhoneNumber + "\n" + "Email is : " + contact.Email);
+                }
+            }
+        }
+
+
     }
 }
